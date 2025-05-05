@@ -1,12 +1,28 @@
 katmanlı mimari
+uygulama işlevselliğini yatay katmanlara yırır.
+her katman yalnızca bir alt katmana bağımlıdır
 1. data access layer (veri erişim katmanı)
 2. business layer (iş katmanı)
 3. presentation layer (sunum katmanı)
 
 her katman kendinden önceki ve sonrakiyle konuşabilir
+ters bağımlılık yoktur, katmanlar sıkı bağımlıdır (tightly coupled)
 
 __onion modeli__ 
+bağımlılıklar dış katmanlardan iç katmanlara doğru akar
+iş kuralları merkezde ve izole olarak korunur
 dıştaki katman bütün katmanları kapsar.
+dependency inversion uygulanır(bağımlılıkların tersine çevrilmesi)
+iç katmanlar dış katmanları bilmez
+infrastructure -> application -> domain yönünde bağımlılık vardır
+
+onion = solid + ddd + Inversion of Control (IoC)
+
+1. core (domain)
+2. application (uygulama)
+3. infrastructure (altyapı)
+4. presentation (UI / API) (sunum)
+
 merkez = core (domain)
 en ortak olanlar core'dadır.
 repositorylerin interface'leri.
@@ -20,7 +36,6 @@ configuration (sql serverl ile alakalı olduğundan)
 migrationlar
 
 bl'ye karşılık gelen = application layer
-
 servis yapıları 
 restfull servisler
 ** view model ve DTO'ların çoğu ** => her projede kullanılıyorsa
@@ -34,3 +49,19 @@ Not: SignInManager UI'da kullanılır.
 
 Neden? Seperation of Concerns
 Yönetilebilir
+
+
+SOLID PRINCIPLES
+1. single responsibility principle (SRP) = bir sınıfın sadece tek bir sorumluluğu olmalı
+2. open/closed principle (OCP) = var olan sınıfı değiştirmeden yeni davranışlar eklenebilmelidir.
+  soyut sınıflar ve arayüzler aracılığıyla
+3. liskov substitution principle (LSP) = bir alt sınıf, üst sınıfın yerine sorunsuzca geçebilmeli
+  yani base sınıf yerine derived sınıf kullanılınca düzgün çalışmalı. kalıtım doğru şekilde yapılmalı
+4. interface segrefation principle (ISP) = kullanılmayan arayüz yöntemlerine bağımlı kalınmamalı
+  büyük arayüzleri böl - küçük, özelleşmiş arayüzler
+  kullanıcı sadece ihtiyacı olan metoda erişmeli
+5. dependency inversion principle (DIP) = bağımlılığın tersine çevrilmesi, yüksek seviyeli sınıflar, düşük seviyeli sınıflara bağımlı olmamalı. her ikisi de soyutlamalara bağımlı olmalı.
+
+DDD (Domain-Driven Design)
+uygulamanın çekirdeğinde, iş mantığını ve gerçek hayat kurallarını yansıtan bir domain modeli bulunmalı.
+  amaç: teknik detayı iş kurallarından ayırmak
