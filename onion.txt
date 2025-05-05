@@ -1,0 +1,36 @@
+katmanlı mimari
+1. data access layer (veri erişim katmanı)
+2. business layer (iş katmanı)
+3. presentation layer (sunum katmanı)
+
+her katman kendinden önceki ve sonrakiyle konuşabilir
+
+__onion modeli__ 
+dıştaki katman bütün katmanları kapsar.
+merkez = core (domain)
+en ortak olanlar core'dadır.
+repositorylerin interface'leri.
+normal klasik katmanlıdan farkı = dıştaki katman içerdekilere erişebilir.
+kümeler mantığıyla aynı
+
+dal katmanına karşılık gelen = infrastructure
+ortama bağlı olan (ef, oracle, vb...)
+configuration (sql serverl ile alakalı olduğundan)
+(?)repositorylerin concrete'leri (çünkü context(sql-oracle db) değiştiğinde concrete yapılarının hepsi değişebilir)
+migrationlar
+
+bl'ye karşılık gelen = application layer
+
+servis yapıları 
+restfull servisler
+** view model ve DTO'ların çoğu ** => her projede kullanılıyorsa
+Not: IFormFile Application Layer'a koyulmaz. 
+Bağımlılığı arttırır. 
+UI katmanına koyulur. 
+Çünkü IFormFile Web'e özgüdür.
+
+Not: Cookie mantığı browser'da olduğundan Application Layer'da olmalı.
+Not: SignInManager UI'da kullanılır.
+
+Neden? Seperation of Concerns
+Yönetilebilir
