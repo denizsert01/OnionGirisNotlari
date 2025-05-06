@@ -1,5 +1,5 @@
 katmanlı mimari
-uygulama işlevselliğini yatay katmanlara yırır.
+uygulama işlevselliğini yatay katmanlara ayırır.
 her katman yalnızca bir alt katmana bağımlıdır
 1. data access layer (veri erişim katmanı)
 2. business layer (iş katmanı)
